@@ -11,9 +11,14 @@
 	<groupId>org.lucamusumeci</groupId>
 	<artifactId>spring5-recipe-assignment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring5-recipe-assignment</name>
+    <packaging>pom</packaging>
+    <name>spring5-recipe-assignment</name>
 	<description>Demo project for Spring Boot</description>
-	<properties>
+    <modules>
+        <module>spring5-recipe-assignment-data</module>
+		<module>spring5-recipe-assignment-web</module>
+	</modules>
+    <properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
@@ -47,14 +52,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
