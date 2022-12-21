@@ -6,17 +6,22 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
-public class Ingredient {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long amount;
+    @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes;
 
-    @OneToOne(fetch = FetchType.EAGER)  //Each time Ingredient is loaded unit of measure is loaded as well. Default behavior for onetoone
-    private UnitOfMeasure unitOfMeasure;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -24,14 +29,6 @@ public class Ingredient {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Long amount) {
-        this.amount = amount;
     }
 
     public Set<Recipe> getRecipes() {
@@ -42,28 +39,12 @@ public class Ingredient {
         this.recipes = recipes;
     }
 
-    public UnitOfMeasure getUnitOfMeasure() {
-        return unitOfMeasure;
-    }
-
-    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
-        this.unitOfMeasure = unitOfMeasure;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ingredient that = (Ingredient) o;
-        return id.equals(that.id);
+        Category category = (Category) o;
+        return id.equals(category.id);
     }
 
     @Override

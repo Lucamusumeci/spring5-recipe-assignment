@@ -15,6 +15,13 @@ public class Recipe {
     private int preparationTime;
     private int cookingTime;
     private int servings;
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
+    @ManyToMany
+    @JoinTable(name = "rel_recipe_category",
+        joinColumns = @JoinColumn(name = "recipe"),
+        inverseJoinColumns = @JoinColumn(name = "category"))
+    private Set<Category> categories;
     private int rating;
     private String instructions;
     @OneToMany(mappedBy = "recipe")
