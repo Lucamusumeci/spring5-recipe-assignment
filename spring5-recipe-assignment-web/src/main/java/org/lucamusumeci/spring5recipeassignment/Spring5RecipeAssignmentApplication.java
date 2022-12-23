@@ -8,6 +8,6 @@ public class Spring5RecipeAssignmentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Spring5RecipeAssignmentApplication.class, args);
-		System.out.println("Hello!");
+		System.out.println("@SpringBootApplication started");
 	}
 }

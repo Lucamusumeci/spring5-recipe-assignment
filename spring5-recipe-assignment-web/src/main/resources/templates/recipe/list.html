@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All recipes</title>
+</head>
+<!--/*@thymesVar id="vet" type="org.lucamusumeci.spring5recipeassignment.domain.Recipe"*/-->
+<body>
+    <h2>Recipes</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Cost</th>
+                <th>Difficulty</th>
+                <th>Preparation Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="recipe:${recipes}">
+                <td th:text="${recipe?.id}">Id</td>
+                <td th:text="${recipe?.name}">Name</td>
+                <td th:text="${recipe?.cost}">Cost</td>
+                <td th:text="${recipe?.difficulty}">Difficulty</td>
+                <td th:text="${recipe?.preparationTime}">Preparation Time</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

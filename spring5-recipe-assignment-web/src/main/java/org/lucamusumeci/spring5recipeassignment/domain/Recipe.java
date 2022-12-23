@@ -2,6 +2,7 @@ package org.lucamusumeci.spring5recipeassignment.domain;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -11,26 +12,54 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String description;
     private int preparationTime;
     private int cookingTime;
     private int servings;
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
+    @Enumerated(EnumType.STRING)
+    private Cost cost;
     @ManyToMany
     @JoinTable(name = "rel_recipe_category",
         joinColumns = @JoinColumn(name = "recipe"),
         inverseJoinColumns = @JoinColumn(name = "category"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
     private int rating;
+    @Lob
+    private String description;
+    @Lob
     private String instructions;
     @OneToMany(mappedBy = "recipe")
-    private Set<Ingredient> ingredients;
+    private Set<Ingredient> ingredients = new HashSet<>();
     @Lob
     private Byte[] image;
     private String url;
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Cost getCost() {
+        return cost;
+    }
+
+    public void setCost(Cost cost) {
+        this.cost = cost;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 
     @Override
     public boolean equals(Object o) {

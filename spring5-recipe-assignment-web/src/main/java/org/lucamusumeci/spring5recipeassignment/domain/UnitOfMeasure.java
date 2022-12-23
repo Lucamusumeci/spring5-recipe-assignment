@@ -13,7 +13,15 @@ public class UnitOfMeasure {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int kcalPerUnit;
+    private String symbol;
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
 
     public String getName() {
         return name;
@@ -21,14 +29,6 @@ public class UnitOfMeasure {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getKcalPerUnit() {
-        return kcalPerUnit;
-    }
-
-    public void setKcalPerUnit(int kcalPerUnit) {
-        this.kcalPerUnit = kcalPerUnit;
     }
 
     public Long getId() {
