@@ -65,9 +65,9 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
         pandoroTiramisuRecipe.setDifficulty(Difficulty.MODERATE);
         pandoroTiramisuRecipe.setServings(4);
 
-        pandoroTiramisuRecipe.getIngredients().add(mascarponeIngredient);
-        pandoroTiramisuRecipe.getIngredients().add(eggIngredient);
-        pandoroTiramisuRecipe.getIngredients().add(vanillaExtractIngredient);
+        pandoroTiramisuRecipe.addIngredient(mascarponeIngredient);
+        pandoroTiramisuRecipe.addIngredient(eggIngredient);
+        pandoroTiramisuRecipe.addIngredient(vanillaExtractIngredient);
 
         Optional<Category> sweetCategory = categoryRepository.findByName("Sweet");
         if(sweetCategory.isPresent()){

@@ -74,6 +74,14 @@ public class Recipe {
         return Objects.hash(id);
     }
 
+    public void addIngredient(Ingredient ingredient){
+        if(ingredient.getId()==null){
+            return;
+        }
+        ingredient.setRecipe(this);
+        this.ingredients.add(ingredient);
+    }
+
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
