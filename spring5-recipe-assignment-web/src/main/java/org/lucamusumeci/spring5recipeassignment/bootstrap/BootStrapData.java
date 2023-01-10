@@ -1,5 +1,7 @@
 package org.lucamusumeci.spring5recipeassignment.bootstrap;
 
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.lucamusumeci.spring5recipeassignment.domain.*;
 import org.lucamusumeci.spring5recipeassignment.repositories.CategoryRepository;
 import org.lucamusumeci.spring5recipeassignment.repositories.IngredientRepository;
@@ -10,6 +12,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class BootStrapData implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -26,13 +29,15 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
         this.unitOfMeasureRepository = unitOfMeasureRepository;
     }
 
+    @Transactional
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        System.out.println(this.getClass().getName() + " started");
+        log.info(this.getClass().getName() + " started");
 
         Optional<UnitOfMeasure> cupUnitOfMeasure = unitOfMeasureRepository.findByName("cup");
         Optional<UnitOfMeasure> gramUnitOfMeasure = unitOfMeasureRepository.findByName("gram");
         Optional<UnitOfMeasure> teaspoonUnitOfMeasure = unitOfMeasureRepository.findByName("teaspoon");
+        Optional<Category> sweetCategory = categoryRepository.findByName("Sweet");
 
         Ingredient mascarponeIngredient = new Ingredient();
         mascarponeIngredient.setName("Mascarpone Cheese");
@@ -69,9 +74,10 @@ public class BootStrapData implements ApplicationListener<ContextRefreshedEvent>
         pandoroTiramisuRecipe.addIngredient(eggIngredient);
         pandoroTiramisuRecipe.addIngredient(vanillaExtractIngredient);
 
-        Optional<Category> sweetCategory = categoryRepository.findByName("Sweet");
         if(sweetCategory.isPresent()){
             pandoroTiramisuRecipe.getCategories().add(sweetCategory.get());
+        } else {
+            log.info("Category Sweet is not present");
         }
         pandoroTiramisuRecipe.setInstructions(
                 "To prepare pandoro tiramisù, start by brewing the coffee and leaving it to cool. Separate the eggs, place the yolks in one bowl and the whites in another. Add 0.25 cup of sugar and the vanilla extract 2, then beat with an electric whisk for around 3 minutes 3\n" +

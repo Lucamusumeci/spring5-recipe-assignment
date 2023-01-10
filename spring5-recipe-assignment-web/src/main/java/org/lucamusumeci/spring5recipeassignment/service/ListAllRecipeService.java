@@ -4,6 +4,9 @@ import org.lucamusumeci.spring5recipeassignment.domain.Recipe;
 import org.lucamusumeci.spring5recipeassignment.repositories.RecipeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Service
 public class ListAllRecipeService implements ListAllService<Recipe> {
 
@@ -14,7 +17,9 @@ public class ListAllRecipeService implements ListAllService<Recipe> {
     }
 
     @Override
-    public Iterable<Recipe> findAll() {
-        return recipeRepository.findAll();
+    public Set<Recipe> findAll() {
+        Set<Recipe> output = new HashSet<>();
+        recipeRepository.findAll().forEach(output::add);
+        return output;
     }
 }
