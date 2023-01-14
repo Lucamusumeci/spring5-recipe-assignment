@@ -2,6 +2,8 @@ package org.lucamusumeci.spring5recipeassignment.service;
 
 import java.util.Set;
 
-public interface ListAllService<T> {
+public interface CrudService<T, ID> {
     Set<T> findAll();
+
+    T findById(ID id);
 }

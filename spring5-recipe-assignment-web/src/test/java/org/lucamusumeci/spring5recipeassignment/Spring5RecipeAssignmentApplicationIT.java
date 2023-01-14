@@ -5,7 +5,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 //@RunWith(SpringRunner.class)  //not needed since JUnit 5
 @SpringBootTest
-public class Spring5REcipeAssignmentApplicationTest {
+public class Spring5RecipeAssignmentApplicationIT {
 
     @Test
     public void contextLoad(){

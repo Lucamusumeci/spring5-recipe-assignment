@@ -8,11 +8,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class ListAllRecipeService implements ListAllService<Recipe> {
+public class RecipeService implements CrudService<Recipe, Long> {
 
     private final RecipeRepository recipeRepository;
 
-    public ListAllRecipeService(RecipeRepository recipeRepository) {
+    public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
@@ -21,5 +21,10 @@ public class ListAllRecipeService implements ListAllService<Recipe> {
         Set<Recipe> output = new HashSet<>();
         recipeRepository.findAll().forEach(output::add);
         return output;
+    }
+
+    @Override
+    public Recipe findById(Long id) {
+        return recipeRepository.findById(id).orElse(null);
     }
 }

@@ -6,7 +6,11 @@ import lombok.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Recipe {
     @Id
@@ -22,8 +26,8 @@ public class Recipe {
     private Cost cost;
     @ManyToMany
     @JoinTable(name = "rel_recipe_category",
-        joinColumns = @JoinColumn(name = "recipe"),
-        inverseJoinColumns = @JoinColumn(name = "category"))
+            joinColumns = @JoinColumn(name = "recipe"),
+            inverseJoinColumns = @JoinColumn(name = "category"))
     private Set<Category> categories = new HashSet<>();
     private int rating;
     @Lob
@@ -47,3 +51,4 @@ public class Recipe {
     }
 
 }
+
