@@ -5,6 +5,10 @@ import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(exclude = "recipe")
 @Entity
 public class Ingredient {
 

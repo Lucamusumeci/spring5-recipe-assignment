@@ -11,6 +11,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Entity
 public class Recipe {
     @Id
@@ -28,14 +29,14 @@ public class Recipe {
     @JoinTable(name = "rel_recipe_category",
             joinColumns = @JoinColumn(name = "recipe"),
             inverseJoinColumns = @JoinColumn(name = "category"))
-    private Set<Category> categories = new HashSet<>();
+    final private Set<Category> categories = new HashSet<>();
     private int rating;
     @Lob
     private String description;
     @Lob
     private String instructions;
     @OneToMany(mappedBy = "recipe")
-    private Set<Ingredient> ingredients = new HashSet<>();
+    final private Set<Ingredient> ingredients = new HashSet<>();
     @Lob
     private Byte[] image;
     private String url;

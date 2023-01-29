@@ -7,6 +7,10 @@ import jakarta.persistence.Id;
 import lombok.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode
 @Entity
 public class UnitOfMeasure {
     @Id

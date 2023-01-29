@@ -6,6 +6,10 @@ import lombok.*;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(exclude = "recipes")
 @Entity
 public class Category {
 
