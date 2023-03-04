@@ -61,6 +61,16 @@ class RecipeServiceTest {
     }
 
     @Test
+    void findByIdNotPresent(){
+        long id = 1L;
+        when(recipeRepository.findById(anyLong())).thenReturn(Optional.empty());
+        Recipe foundRecipe = recipeService.findById(id);
+        assertNull(foundRecipe);
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, times(0)).findAll();
+    }
+
+    @Test
     void saveCommandNull() {
         assertNull(recipeService.saveCommand(null));
     }
